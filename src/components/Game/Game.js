@@ -9,13 +9,9 @@ import GuessInput from "./GuessInput";
 import GuessResult from "./GuessResult";
 import HappyEnd from "./HappyEnd";
 import SadEnd from "./SadEnd";
+import Keyboard from "./Keyboard";
 
-// Pick a random word on every pageload.
-const answer = sample(WORDS);
-// To make debugging easier, we'll log the solution in the console.
-console.info({ answer });
-
-function Game() {
+function Game({ answer }) {
 	const [win, setWin] = React.useState(false);
 	const [lose, setLose] = React.useState(false);
 	const [guessLen, setGuessLen] = React.useState(1);
@@ -50,16 +46,17 @@ function Game() {
 	};
 
 	return (
-		<>
+		<div className="game-wrapper">
 			<GuessResult guessList={guessList} />
 			<GuessInput
 				handleGuessData={handleGuessData}
 				guessLen={guessLen}
 				setGuessLen={setGuessLen}
 			/>
+			<Keyboard />
 			{win && <HappyEnd guessLen={guessLen} />}
 			{lose && <SadEnd answer={answer} />}
-		</>
+		</div>
 	);
 }
 
