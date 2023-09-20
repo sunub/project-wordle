@@ -1,7 +1,4 @@
 import React from "react";
-
-import { sample } from "../../utils";
-import { WORDS } from "../../data";
 import { range } from "../../utils";
 import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
 import { checkGuess } from "../../game-helpers";
@@ -53,7 +50,7 @@ function Game({ answer }) {
 				guessLen={guessLen}
 				setGuessLen={setGuessLen}
 			/>
-			<Keyboard />
+			<Keyboard guessList={guessList[guessLen - 2]} />
 			{win && <HappyEnd guessLen={guessLen} />}
 			{lose && <SadEnd answer={answer} />}
 		</div>
